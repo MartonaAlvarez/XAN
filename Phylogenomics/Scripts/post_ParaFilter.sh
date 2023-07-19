@@ -1,6 +1,9 @@
 CLASS_PATH=/usr/bin/
 
-###Prepare files for further analysis#######
+###Prepare files for further analysis after running ParaFilter. Script created by Marta Alvarez Presas at the University of Bristol thanks to Mattia Giacomelli,
+### who shared ParaFilter. #######
+
+
 echo "Preparing files for further analysis"
 
 mkdir post_pruning
@@ -73,7 +76,7 @@ echo "All sequences have been renamed"
 ##Concatenate sequences##
 echo "Concatenate for further analyses"
 
-cp /home/lk19822/Programes/FASconCAT-G/FASconCAT-G_v1.04.pl .
+cp /path/to/FASconCAT-G/FASconCAT-G_v1.04.pl .
 
 perl FASconCAT-G_v1.04.pl -l -s
 mv FcC_supermatrix.fas HG_80_ParaFilter_supermatrix.fas
