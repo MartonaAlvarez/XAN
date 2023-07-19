@@ -1,5 +1,10 @@
 CLASS_PATH=/usr/bin/
 
+## This script prepares all the necessary files for pruning paralogs from multi-fasta alignments using Phylotreepruner. Note that all the necessary software needs to 
+## be properly installed and that the used will need to change all the corresponding paths. The steps of changing and saving headers can be skipped, and are only for making
+## it easier if the user wants to trace the initial steps. Created by Marta Alvarez Presas at the University of Bristol. If used, please, cite.
+
+
 ###Prepare files for further analysis#######
 echo "Preparing files for further analysis"
 
@@ -58,7 +63,7 @@ mkdir renamed
 mv *_rn.fa renamed/
 cd renamed/
 
-for f in *.fa; do perl /home/lk19822/Programes/Phylogenomic-master/fasta2relaxedPhylip.pl -f "$f" -o "$f".phylip; done
+for f in *.fa; do perl /path/to/fasta2relaxedPhylip.pl -f "$f" -o "$f".phylip; done
 
 mkdir conversed
 mv *.phylip conversed/
@@ -116,7 +121,7 @@ OG=`echo $f | cut -d . -f 1 | sed 's/.\+\///g'`
 ####You may want to change some of the PhyloTreePruner settings in the next line###
 ###################################################################################
 
-java -cp /home/lk19822/Programes/src_and_wrapper_scripts/ PhyloTreePruner $OG".tre_rn.tre" 10 $OG".fa" 0.1 u
+java -cp /path/to/ PhyloTreePruner $OG".tre_rn.tre" 10 $OG".fa" 0.1 u
 done
 echo Done
 
