@@ -1,5 +1,6 @@
 ##Script for the preparation of the datasets to apply the ParaFilter script###
-##The name of the HG must be changed in several points of the script. Make sure that all the paths are correct###
+##The name of the HG must be changed at several points in the script. Make sure that all the paths are correct###
+##Script created by Marta Alvarez Presas at the University of Bristol thanks to Mattia Giacomelli who shared the ParaFilter scripts ##
 
 ##Fetch the sequences##
 echo "Fetching the sequences"
@@ -60,23 +61,23 @@ mv *.fa ../ParaFilter/
 cd ali/trimmed/trees/
 cp *.tre ../../../../ParaFilter/
 cd ../../../../ParaFilter/
-cp /home/lk19822/Cuvier/Ona/XAN/Phylogenomics/scripts/convertfasta.py .
+cp /path/to/convertfasta.py .
 mkdir fasta_converted
 
 echo "Everything ready"
 
-##Convert fasta files to single line fasta. Here you need to change the path to the correct one!!##
+##Convert fasta files to single-line fasta. Here you need to change the path to the correct one!!##
 echo "Converting fasta files"
 
 
-for f in *.fa; do python convertfasta.py -i "/home/lk19822/Cuvier/Ona/XAN/Phylogenomics/Genes/Ancestral_Metazoa/HG_80/analyses/ParaFilter/" -o "/home/lk19822/Cuvier/Ona/XAN/Phylogenomics/Genes/Ancestral_Metazoa/HG_80/analyses/ParaFilter/fasta_converted/" -f $f; done
+for f in *.fa; do python convertfasta.py -i "/path/to/ParaFilter/" -o "/path/to/ParaFilter/fasta_converted/" -f $f; done
 
 echo "Fastas converted"
 
 mv *.tre fasta_converted/
 cd fasta_converted/
-cp /home/lk19822/Cuvier/Ona/XAN/Phylogenomics/scripts/ParaFilter.py .
-cp /home/lk19822/Cuvier/Ona/XAN/Phylogenomics/scripts/ParaModules.py .
+cp /path/to/ParaFilter.py .
+cp /path/to/ParaModules.py .
 
 ## Prepare a list with all the tree file names and all the fasta sequences file names ###
 echo "Preparing lists of files"
@@ -86,10 +87,10 @@ ls *.fasta > fastas.txt
 
 echo "Lists done"
 
-##Now we run ParaFilter. Fingers crossed, everything is alright##
+## Now we run ParaFilter. Fingers crossed, everything is alright. Note that if you use a different number for codifying the species, -n should be changed ##
 echo "Run ParaFilter"
 
-python3 ParaFilter.py -f fastas.txt -t trees.txt -n 4 -w /home/lk19822/Cuvier/Ona/XAN/Phylogenomics/Genes/Ancestral_Metazoa/HG_80/analyses/ParaFilter/fasta_converted/
+python3 ParaFilter.py -f fastas.txt -t trees.txt -n 4 -w /path/to/ParaFilter/fasta_converted/
 
 for f in *.new; do mv -- "$f" "${f%.fasta.new}_new.fa"; done
 
